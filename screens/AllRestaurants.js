@@ -5,6 +5,7 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
+  Button,
 } from "react-native";
 import { Card, Rating } from "react-native-elements";
 import { fetchAllRestaurants } from "../api/apiCalls";
@@ -56,6 +57,10 @@ export class AllRestaurants extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Button
+          title="Go to Details"
+          onPress={() => this.props.navigation.navigate("RestaurantDetails")}
+        />
         <FlatList
           data={this.state.restaurants}
           renderItem={this.renderCards}
