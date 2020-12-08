@@ -31,7 +31,9 @@ export class AllRestaurants extends Component {
 
   renderCards = ({ item }) => {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate("RestaurantDetails")}
+      >
         <Card key={item.restaurantId}>
           <Card.Title>{item.restaurantName}</Card.Title>
           <Card.Divider />
@@ -57,10 +59,6 @@ export class AllRestaurants extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button
-          title="Go to Details"
-          onPress={() => this.props.navigation.navigate("RestaurantDetails")}
-        />
         <FlatList
           data={this.state.restaurants}
           renderItem={this.renderCards}
