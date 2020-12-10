@@ -20,7 +20,7 @@ export class AllRestaurants extends Component {
   componentDidMount() {
     this.setState({ isLoading: true }, async () => {
       try {
-        const rest = await fetchAllRestaurants();
+        const rest = await fetchAllRestaurants(localStorage("jwtToken"));
         this.setState({ restaurants: rest, isLoading: false });
       } catch (error) {
         console.log(error);

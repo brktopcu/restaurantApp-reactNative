@@ -1,13 +1,25 @@
-import { allRestaurantsUrl } from "./constants";
+import { allRestaurantsUrl, loginUrl } from "./constants";
 
-export const fetchAllRestaurants = async () => {
+export const fetchAllRestaurants = async (token) => {
   const response = await fetch(allRestaurantsUrl, {
     method: "get",
-    headers: new Headers({
-      Authorization:
-        "Bearer eyJhbGciOiJIUzUxMiJ9.eyJmdWxsTmFtZSI6IkJ1cmFrIFRvcMOndSIsImlkIjoiNiIsImV4cCI6MTYwNzMzNzk5MiwiaWF0IjoxNjA3MzM0MzkyLCJ1c2VybmFtZSI6ImVtYWlsQGVtYWlsLmNvbSJ9.fE5j8xGa9Qt13nYTBWaUOKne7oBWibAALO5BcQ1fGt689m5s5epW3-amnb5yonjTRUuqmvmJyFApoLMWo186wg",
-    }),
+    headers: {
+      Authorization: token,
+    },
   });
   const restaurants = await response.json();
   return restaurants;
+};
+
+export const loginRequest = async (user) => {
+  const response = await fetch(loginUrl, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+
+  const credentials = await response.json();
+  return credentials;
 };
