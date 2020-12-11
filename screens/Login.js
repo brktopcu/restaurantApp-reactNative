@@ -4,6 +4,9 @@ import { Button, Input, ThemeProvider } from "react-native-elements";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { loginRequest } from "../api/apiCalls";
+import jwt_decode from "jwt-decode";
+import { connect } from "react-redux";
+import { setUserAction } from "../redux/actions/setUserAction";
 
 const theme = {
   colors: {
@@ -26,8 +29,11 @@ export class Login extends Component {
     try {
       const response = await loginRequest(user);
       console.log(response);
+      const decodedToken = jwt_decode(response.token);
       //set response.token globally(redux)
       //route to home screen
+      this.props.setUserAction(decodedToken);
+      console.log(this.props.userDetails);
     } catch (error) {
       console.log(error);
     }
@@ -66,4 +72,9 @@ export class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+  const { userDetails } = state;
+  return { userDetails };
+};
+
+export default connect(mapStateToProps, { setUserAction })(Login);
