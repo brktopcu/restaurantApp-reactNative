@@ -7,6 +7,7 @@ import TabBarNavigation from "./navigation/TabBarNavigation";
 import AuthStack from "./navigation/AuthStack";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import _ from "lodash";
 
 const theme = {
   colors: {
