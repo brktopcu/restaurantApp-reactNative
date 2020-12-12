@@ -10,6 +10,7 @@ import {
 import { Card, Rating } from "react-native-elements";
 import { fetchAllRestaurants } from "../api/apiCalls";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { connect } from "react-redux";
 
 export class AllRestaurants extends Component {
   state = {
@@ -20,7 +21,9 @@ export class AllRestaurants extends Component {
   componentDidMount() {
     this.setState({ isLoading: true }, async () => {
       try {
-        const rest = await fetchAllRestaurants(localStorage("jwtToken"));
+        const rest = await fetchAllRestaurants(
+          this.props.userDetails.user.token
+        );
         this.setState({ restaurants: rest, isLoading: false });
       } catch (error) {
         console.log(error);
@@ -76,4 +79,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AllRestaurants;
+const mapStateToProps = (state) => {
+  const { userDetails } = state;
+  return { userDetails };
+};
+
+export default connect(mapStateToProps)(AllRestaurants);
