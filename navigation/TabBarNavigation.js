@@ -7,6 +7,7 @@ import Favourites from "../screens/Favourites";
 import MyReservations from "../screens/MyReservations";
 import { MaterialIcons } from "@expo/vector-icons";
 import AllRestaurantsStack from "./AllRestaurantsStack";
+import { primaryColor } from "../api/constants";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +24,9 @@ const TabBarNavigation = () => {
           } else if (route.name === "MyReservations") {
             iconName = "assignment";
           }
-          return <MaterialIcons name={iconName} size={24} color="#db2828" />;
+          return (
+            <MaterialIcons name={iconName} size={24} color={primaryColor} />
+          );
         },
       })}
       tabBarOptions={{

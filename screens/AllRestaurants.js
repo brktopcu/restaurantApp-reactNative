@@ -11,6 +11,7 @@ import { Card, Rating } from "react-native-elements";
 import { fetchAllRestaurants } from "../api/apiCalls";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { connect } from "react-redux";
+import { primaryColor } from "../api/constants";
 
 export class AllRestaurants extends Component {
   state = {
@@ -37,13 +38,15 @@ export class AllRestaurants extends Component {
       <TouchableOpacity
         onPress={() => this.props.navigation.navigate("RestaurantDetails")}
       >
-        <Card key={item.restaurantId}>
+        <Card key={item.restaurantId} containerStyle={styles.card}>
           <Card.Title>{item.restaurantName}</Card.Title>
-          <Card.Divider />
-          <Card.Image source={require("../images/no-image.jpg")} />
+          <Card.Divider style={styles.divider} />
+          <Card.Image
+            source={{ uri: `data:image/jpeg;base64,${item.thumbnail}` }}
+          />
           <Rating
-            type="star"
-            ratingColor="yellow"
+            type="custom"
+            ratingColor="#fff94a"
             imageSize={20}
             style={{ marginTop: 5 }}
             readonly={true}
@@ -76,6 +79,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 30,
+  },
+  card: {
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
+  },
+  divider: {
+    height: 1.5,
+    backgroundColor: primaryColor,
   },
 });
 

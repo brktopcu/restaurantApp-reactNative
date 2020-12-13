@@ -1,3 +1,7 @@
+export const primaryColor = "#F45B69";
+export const secondaryColor = "#FFFFFC";
+export const headerColor = "#0C120C";
+
 const rootUrl = "http://192.168.0.17:8080";
 
 export const allRestaurantsUrl = rootUrl + "/api/restaurant";

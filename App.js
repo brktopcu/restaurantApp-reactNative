@@ -8,10 +8,11 @@ import AuthStack from "./navigation/AuthStack";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import _ from "lodash";
+import { primaryColor, secondaryColor } from "./api/constants";
 
 const theme = {
   colors: {
-    primary: "#db2828",
+    primary: primaryColor,
   },
 };
 export class App extends Component {
@@ -25,7 +26,7 @@ export class App extends Component {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <View style={styles.container}>
-            <StatusBar style="auto" />
+            <StatusBar style="auto" backgroundColor={secondaryColor} />
             <NavigationContainer>
               {_.isEmpty(this.state.user) ? (
                 <AuthStack updateUser={this.updateUser} />

@@ -25,6 +25,7 @@ export class Login extends Component {
       const decodedToken = jwt_decode(response.token);
       const userWithToken = { ...decodedToken, token: response.token };
       this.props.setUserAction(userWithToken);
+      console.log(userWithToken);
       this.props.updateUser();
     } catch (error) {
       this.setState({ showErrorMessage: true });
