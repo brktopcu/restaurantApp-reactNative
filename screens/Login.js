@@ -27,28 +27,31 @@ export class Login extends Component {
       this.props.setUserAction(userWithToken);
       this.props.updateUser();
     } catch (error) {
+      this.setState({ showErrorMessage: true });
       console.log(error);
     }
   };
 
   render() {
     return (
-      <View>
-        <Text> Login </Text>
+      <View style={styles.container}>
         <Input
-          placeholder="E-posta adresinizi girin"
+          placeholder="E-posta adresi"
           leftIcon={<MaterialIcons name="email" size={15} color="black" />}
           value={this.state.username}
           onChangeText={(text) => this.setState({ username: text })}
         />
         <Input
-          placeholder="Şifrenizi girin"
+          placeholder="Şifre"
           leftIcon={<Entypo name="lock" size={15} color="black" />}
           value={this.state.password}
           onChangeText={(text) => this.setState({ password: text })}
           secureTextEntry={true}
           password={true}
         />
+        {this.state.showErrorMessage && (
+          <Text style={styles.text}>Hatalı giriş yaptınız!</Text>
+        )}
         <Button title="Giriş Yap" type="clear" onPress={this.handleLogin} />
         <Button
           title="Kayıt Ol"
@@ -61,6 +64,18 @@ export class Login extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    paddingTop: 30,
+  },
+  text: {
+    fontWeight: "bold",
+  },
+});
 
 const mapStateToProps = (state) => {
   const { userDetails } = state;
