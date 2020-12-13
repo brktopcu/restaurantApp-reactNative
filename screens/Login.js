@@ -36,13 +36,13 @@ export class Login extends Component {
     return (
       <View style={styles.container}>
         <Input
-          placeholder="E-posta adresi"
+          label="E-posta adresi"
           leftIcon={<MaterialIcons name="email" size={15} color="black" />}
           value={this.state.username}
           onChangeText={(text) => this.setState({ username: text })}
         />
         <Input
-          placeholder="Şifre"
+          label="Şifre"
           leftIcon={<Entypo name="lock" size={15} color="black" />}
           value={this.state.password}
           onChangeText={(text) => this.setState({ password: text })}
