@@ -31,7 +31,7 @@ export class App extends Component {
               {_.isEmpty(this.state.user) ? (
                 <AuthStack updateUser={this.updateUser} />
               ) : (
-                <TabBarNavigation />
+                <TabBarNavigation updateUser={this.updateUser} />
               )}
             </NavigationContainer>
           </View>
