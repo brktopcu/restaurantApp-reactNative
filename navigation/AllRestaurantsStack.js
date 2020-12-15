@@ -29,7 +29,7 @@ export class AllRestaurantsStack extends Component {
               name="sign-out"
               type="font-awesome"
               size={25}
-              style={{ marginRight: 15 }}
+              style={{ marginRight: 10 }}
               accessibilityLabel="Çıkış Yap"
               onPress={this.handleLogout}
             />

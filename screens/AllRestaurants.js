@@ -36,7 +36,9 @@ export class AllRestaurants extends Component {
   renderCards = ({ item }) => {
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate("RestaurantDetails")}
+        onPress={() =>
+          this.props.navigation.navigate("RestaurantDetails", item)
+        }
       >
         <Card key={item.restaurantId} containerStyle={styles.card}>
           <Card.Title>{item.restaurantName}</Card.Title>
