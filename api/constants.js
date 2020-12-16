@@ -9,3 +9,5 @@ export const allRestaurantsUrl = rootUrl + "/api/restaurant";
 export const loginUrl = rootUrl + "/api/users/login";
 
 export const registerUrl = rootUrl + "/api/users/register";
+
+export const commentUrl = rootUrl + "/api/comment/";
