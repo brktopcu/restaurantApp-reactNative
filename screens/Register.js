@@ -55,12 +55,16 @@ export class Register extends Component {
           label="Şifre"
           value={this.state.password}
           onChangeText={(text) => this.setState({ password: text })}
+          secureTextEntry={true}
+          password={true}
         />
         <Input
           leftIcon={<Entypo name="lock" size={15} color="black" />}
           label="Şifreyi Onayla"
           value={this.state.confirmPassword}
           onChangeText={(text) => this.setState({ confirmPassword: text })}
+          secureTextEntry={true}
+          password={true}
         />
         <Button title="Kayıt Ol" type="clear" onPress={this.registerUser} />
       </View>
