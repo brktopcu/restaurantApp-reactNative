@@ -3,6 +3,7 @@ import {
   commentUrl,
   favouriteRestaurantsUrl,
   loginUrl,
+  myReservationsUrl,
   registerUrl,
 } from "./constants";
 
@@ -26,6 +27,17 @@ export const fetchFavourites = async (token) => {
   });
   const restaurants = await response.json();
   return restaurants;
+};
+
+export const fetchReservations = async (token, userId) => {
+  const response = await fetch(myReservationsUrl + userId, {
+    method: "get",
+    headers: {
+      Authorization: token,
+    },
+  });
+  const reservations = await response.json();
+  return reservations;
 };
 
 export const loginRequest = async (user) => {

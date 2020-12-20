@@ -8,6 +8,8 @@ export const allRestaurantsUrl = rootUrl + "/api/restaurant";
 
 export const favouriteRestaurantsUrl = rootUrl + "/api/restaurant/favourite";
 
+export const myReservationsUrl = rootUrl + "/api/reservation/user/";
+
 export const loginUrl = rootUrl + "/api/users/login";
 
 export const registerUrl = rootUrl + "/api/users/register";
