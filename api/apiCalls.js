@@ -1,12 +1,24 @@
 import {
   allRestaurantsUrl,
   commentUrl,
+  favouriteRestaurantsUrl,
   loginUrl,
   registerUrl,
 } from "./constants";
 
 export const fetchAllRestaurants = async (token) => {
   const response = await fetch(allRestaurantsUrl, {
+    method: "get",
+    headers: {
+      Authorization: token,
+    },
+  });
+  const restaurants = await response.json();
+  return restaurants;
+};
+
+export const fetchFavourites = async (token) => {
+  const response = await fetch(favouriteRestaurantsUrl, {
     method: "get",
     headers: {
       Authorization: token,

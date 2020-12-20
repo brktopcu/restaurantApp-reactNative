@@ -32,41 +32,43 @@ export class Register extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Input
-          leftIcon={<MaterialIcons name="email" size={15} color="black" />}
-          label="E-posta adresi"
-          value={this.state.username}
-          onChangeText={(text) => this.setState({ username: text })}
-        />
-        <Input
-          leftIcon={<FontAwesome name="user" size={15} color="black" />}
-          label="Ad Soyad"
-          value={this.state.fullName}
-          onChangeText={(text) => this.setState({ fullName: text })}
-        />
-        <Input
-          leftIcon={<FontAwesome name="phone" size={15} color="black" />}
-          label="Telefon numarası"
-          value={this.state.phoneNumber}
-          onChangeText={(text) => this.setState({ phoneNumber: text })}
-        />
-        <Input
-          leftIcon={<Entypo name="lock" size={15} color="black" />}
-          label="Şifre"
-          value={this.state.password}
-          onChangeText={(text) => this.setState({ password: text })}
-          secureTextEntry={true}
-          password={true}
-        />
-        <Input
-          leftIcon={<Entypo name="lock" size={15} color="black" />}
-          label="Şifreyi Onayla"
-          value={this.state.confirmPassword}
-          onChangeText={(text) => this.setState({ confirmPassword: text })}
-          secureTextEntry={true}
-          password={true}
-        />
-        <Button title="Kayıt Ol" type="clear" onPress={this.registerUser} />
+        <ScrollView>
+          <Input
+            leftIcon={<MaterialIcons name="email" size={15} color="black" />}
+            label="E-posta adresi"
+            value={this.state.username}
+            onChangeText={(text) => this.setState({ username: text })}
+          />
+          <Input
+            leftIcon={<FontAwesome name="user" size={15} color="black" />}
+            label="Ad Soyad"
+            value={this.state.fullName}
+            onChangeText={(text) => this.setState({ fullName: text })}
+          />
+          <Input
+            leftIcon={<FontAwesome name="phone" size={15} color="black" />}
+            label="Telefon numarası"
+            value={this.state.phoneNumber}
+            onChangeText={(text) => this.setState({ phoneNumber: text })}
+          />
+          <Input
+            leftIcon={<Entypo name="lock" size={15} color="black" />}
+            label="Şifre"
+            value={this.state.password}
+            onChangeText={(text) => this.setState({ password: text })}
+            secureTextEntry={true}
+            password={true}
+          />
+          <Input
+            leftIcon={<Entypo name="lock" size={15} color="black" />}
+            label="Şifreyi Onayla"
+            value={this.state.confirmPassword}
+            onChangeText={(text) => this.setState({ confirmPassword: text })}
+            secureTextEntry={true}
+            password={true}
+          />
+          <Button title="Kayıt Ol" type="clear" onPress={this.registerUser} />
+        </ScrollView>
       </View>
     );
   }

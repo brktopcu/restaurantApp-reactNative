@@ -6,6 +6,9 @@ import MyReservations from "../screens/MyReservations";
 import { MaterialIcons } from "@expo/vector-icons";
 import AllRestaurantsStack from "./AllRestaurantsStack";
 import { primaryColor } from "../api/constants";
+import { FavouriteStack } from "./FavouriteStack";
+import { Provider } from "react-redux";
+import { store } from "../redux/store";
 
 const Tab = createBottomTabNavigator();
 
@@ -43,7 +46,11 @@ export class TabBarNavigation extends Component {
             />
           )}
         </Tab.Screen>
-        <Tab.Screen name="Favourites" component={Favourites} />
+        <Tab.Screen name="Favourites">
+          {(props) => (
+            <FavouriteStack {...props} updateUser={this.props.updateUser} />
+          )}
+        </Tab.Screen>
         <Tab.Screen name="MyReservations" component={MyReservations} />
       </Tab.Navigator>
     );
