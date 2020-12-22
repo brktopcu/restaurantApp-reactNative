@@ -123,7 +123,15 @@ export class RestaurantDetails extends Component {
             <Text>{this.props.route.params.restaurantAddress}</Text>
           </View>
 
-          <Button title="Rezervasyon Yap" />
+          <Button
+            onPress={() =>
+              this.props.navigation.navigate(
+                "MakeReservation",
+                this.props.route.params
+              )
+            }
+            title="Rezervasyon Yap"
+          />
         </View>
         <Divider style={styles.divider} />
         <Text style={styles.textHeader}>Yorumlar</Text>

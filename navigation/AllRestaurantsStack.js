@@ -7,6 +7,7 @@ import { headerColor, primaryColor, secondaryColor } from "../api/constants";
 import { Icon } from "react-native-elements";
 import { connect } from "react-redux";
 import { logoutAction } from "../redux/actions/logoutAction";
+import MakeReservation from "../screens/MakeReservation";
 
 const Stack = createStackNavigator();
 
@@ -45,6 +46,11 @@ export class AllRestaurantsStack extends Component {
           name="RestaurantDetails"
           component={RestaurantDetails}
           options={{ title: "Restoran" }}
+        />
+        <Stack.Screen
+          name="MakeReservation"
+          component={MakeReservation}
+          options={{ title: "Rezervasyon" }}
         />
       </Stack.Navigator>
     );

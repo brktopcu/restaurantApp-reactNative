@@ -2,6 +2,7 @@ import {
   allRestaurantsUrl,
   commentUrl,
   favouriteRestaurantsUrl,
+  getTablesUrl,
   loginUrl,
   myReservationsUrl,
   registerUrl,
@@ -77,4 +78,15 @@ export const sendComment = async (restaurantId, token, comment) => {
   });
   const jsonResponse = await response.json();
   return jsonResponse;
+};
+
+export const fetchTables = async (restaurantId, token) => {
+  const response = await fetch(getTablesUrl + restaurantId, {
+    method: "get",
+    headers: {
+      Authorization: token,
+    },
+  });
+  const tables = await response.json();
+  return tables;
 };
