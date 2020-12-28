@@ -6,10 +6,11 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { getTablesUrl, primaryColor } from "../api/constants";
 import { fetchTables } from "../api/apiCalls";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { Picker } from "@react-native-picker/picker";
 import { TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
+import dateformat from "dateformat";
 
 export class MakeReservation extends Component {
   state = {
@@ -21,11 +22,13 @@ export class MakeReservation extends Component {
     reservationNote: "",
     rtableId: 0,
     tables: [],
-    showPicker: false,
+    showDatePicker: false,
+    selectedDate: new Date(),
   };
 
   componentDidMount = () => {
     this.getTables();
+    this.setState({ reservationDate: this.format(new Date()) });
   };
 
   getTables = async () => {
@@ -38,6 +41,22 @@ export class MakeReservation extends Component {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  setDate = (event, selectedDate) => {
+    if (selectedDate === undefined) {
+      this.setState({ selectedDate: new Date(), showDatePicker: false });
+    } else {
+      this.setState({
+        selectedDate: selectedDate,
+        showDatePicker: false,
+        reservationDate: this.format(selectedDate),
+      });
+    }
+  };
+
+  format = (date) => {
+    return dateformat(date, "dd-mm-yyyy");
   };
 
   render() {
@@ -60,7 +79,24 @@ export class MakeReservation extends Component {
           onChangeText={(text) => this.setState({ reservationLastName: text })}
         />
 
-        {/*Implement date picker*/}
+        <View style={styles.dateContainer}>
+          {this.state.selectedDate && (
+            <Text style={styles.dateText}>{this.state.reservationDate}</Text>
+          )}
+
+          <Button
+            title="Tarih seçin"
+            onPress={() => this.setState({ showDatePicker: true })}
+          />
+
+          {this.state.showDatePicker && (
+            <RNDateTimePicker
+              value={this.state.selectedDate}
+              mode="date"
+              onChange={this.setDate}
+            />
+          )}
+        </View>
 
         <Picker
           selectedValue={this.state.reservationPeriod}
@@ -146,6 +182,11 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
+    alignItems: "center",
+    margin: 20,
+  },
+  dateText: {
+    fontWeight: "bold",
   },
   datePicker: {
     backgroundColor: primaryColor,
